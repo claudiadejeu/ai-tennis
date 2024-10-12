@@ -1,0 +1,63 @@
+[tool.poetry]
+name = "ai-tennis"
+version = "0.1.0"
+description = "AI Tennis project with computer vision models."
+authors = ["Claudia De Jeu Boronat <claudiadejeuboronat@gmail.com>"]
+readme = "README.md"
+packages = [{include = "ai_tennis", from = "src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11"
+pandas = "^2.2.3"
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^1.0.0"
+
+[tool.poetry.group.linting.dependencies]
+mypy = "^1.0.1"
+ruff = "0.6.2"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.ruff]
+line-length = 120
+exclude = [
+    ".git",
+    ".ipynb_checkpoints",
+    ".mypy_cache",
+    ".pyenv",
+    ".pytest_cache",
+    ".pytype",
+    ".ruff_cache",
+    ".tox",
+    ".venv",
+    ".vscode",
+    "__pypackages__",
+    "_build",
+    "buck-out",
+    "build",
+    "dist",
+    ".dist",
+    "node_modules",
+    "site-packages",
+    "venv",
+]
+
+[tool.ruff.lint]
+# Below are the default Ruff rules plus flake8-bandit (`S`):
+# Enable Pyflakes (`F`) and a subset of the pycodestyle (`E`) codes by default.
+# Unlike Flake8, Ruff doesn't enable pycodestyle warnings (`W`) or
+# McCabe complexity (`C901`) by default.
+select = ["E4", "E7", "E9", "F", "S"]
+# Allow fix for all enabled rules (when `--fix`) is provided.
+fixable = ["ALL"]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["S101"]
+
+[tool.ruff.format]
+docstring-code-format = true
+docstring-code-line-length = 120
